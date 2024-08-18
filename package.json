@@ -1,0 +1,14 @@
+{
+  "name": "problem-solving",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test:leetcode": "bun test --test-name-pattern leetcode"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
