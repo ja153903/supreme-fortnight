@@ -1,12 +1,7 @@
-function maxScore(a: number[], b: number[]): number {
-  const memo: number[][] = [];
+import { createMemoTable } from "@lib/data-structures/dp";
 
-  for (let i = 0; i < a.length; i++) {
-    memo.push([]);
-    for (let j = 0; j < b.length; j++) {
-      memo[i].push(-1);
-    }
-  }
+function maxScore(a: number[], b: number[]): number {
+  const memo: number[][] = createMemoTable<number>(a.length, b.length, -1);
 
   function rec(a: number[], b: number[], i: number, j: number): number {
     if (i === a.length) {
