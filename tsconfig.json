@@ -26,7 +26,8 @@
 
     // Custom paths
     "paths": {
-      "@lib/*": ["./lib/*"]
+      "@lib/*": ["./lib/*"],
+      "@utils/*": ["./utils/*"]
     }
   }
 }
