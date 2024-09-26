@@ -1,6 +1,6 @@
 class Trie {
-  private hasWord: boolean;
-  private children: Map<string, Trie>;
+  hasWord: boolean;
+  children: Map<string, this>;
 
   constructor() {
     this.hasWord = false;
@@ -23,7 +23,7 @@ class Trie {
   }
 
   has(word: string): boolean {
-    let current: Trie | undefined = this;
+    let current: this | undefined = this;
 
     for (const char of word) {
       if (current === undefined || !current.children.has(char)) {
@@ -40,7 +40,7 @@ class Trie {
    * `lcp` returns the longest common prefix given some string
    */
   lcp(prefix: string): number {
-    let current: Trie | undefined = this;
+    let current: this | undefined = this;
     let depth = 0;
 
     for (let i = 0; i < prefix.length; i++) {
@@ -54,6 +54,20 @@ class Trie {
     }
 
     return depth;
+  }
+
+  find(prefix: string): this | null {
+    let current: this = this;
+
+    for (let i = 0; i < prefix.length; i++) {
+      if (!current.children.has(prefix[i])) {
+        return null;
+      }
+
+      current = current.children.get(prefix[i])!;
+    }
+
+    return current;
   }
 }
 
