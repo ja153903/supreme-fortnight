@@ -18,19 +18,19 @@ class Counter<T> extends Map<T, number> {
   }
 
   increment(key: T) {
-    if (!this.has(key)) {
-      this.set(key, 0);
-    }
-
+    this.setIfEmpty(key);
     this.set(key, this.get(key)! + 1);
   }
 
   decrement(key: T) {
+    this.setIfEmpty(key);
+    this.set(key, this.get(key)! - 1);
+  }
+
+  private setIfEmpty(key: T) {
     if (!this.has(key)) {
       this.set(key, 0);
     }
-
-    this.set(key, this.get(key)! - 1);
   }
 }
 
