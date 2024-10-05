@@ -1,13 +1,14 @@
-/**
- * `Counter` tracks non-negative counts of various keys
- */
-export class Counter<T> extends Map<T, number> {
+class Counter<T> extends Map<T, number> {
   constructor(iterable?: Iterable<T>) {
     super();
 
     if (iterable) {
       this.update(iterable);
     }
+  }
+
+  override get(key: T): number {
+    return super.get(key) ?? 0;
   }
 
   update(iterable: Iterable<T>) {
@@ -18,8 +19,7 @@ export class Counter<T> extends Map<T, number> {
 
   increment(key: T) {
     if (!this.has(key)) {
-      this.set(key, 1);
-      return;
+      this.set(key, 0);
     }
 
     this.set(key, this.get(key)! + 1);
@@ -28,9 +28,10 @@ export class Counter<T> extends Map<T, number> {
   decrement(key: T) {
     if (!this.has(key)) {
       this.set(key, 0);
-      return;
     }
 
     this.set(key, this.get(key)! - 1);
   }
 }
+
+export { Counter };
