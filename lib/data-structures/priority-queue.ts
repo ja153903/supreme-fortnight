@@ -1,5 +1,3 @@
-import { TODO } from "@utils/todo";
-
 export type PriorityQueueComparator<T> = (a: T, b: T) => number;
 
 /**
@@ -18,7 +16,31 @@ export class PriorityQueue<T> {
   }
 
   enqueue(item: T) {
-    throw new TODO("Implement enqueue");
+    this.queue.push(item);
+    let i = this.queue.length - 1;
+
+    while (
+      i !== 0 &&
+      this.comparator(this.queue[i], this.queue[this.parent(i)]) < 0
+    ) {
+      [this.queue[i], this.queue[this.parent(i)]] = [
+        this.queue[this.parent(i)],
+        this.queue[i],
+      ];
+      i = this.parent(i);
+    }
+  }
+
+  private parent(i: number): number {
+    return Math.floor((i - 1) / 2);
+  }
+
+  private left(i: number): number {
+    return 2 * i + 1;
+  }
+
+  private right(i: number): number {
+    return 2 * i + 2;
   }
 
   /**
@@ -44,13 +66,37 @@ export class PriorityQueue<T> {
       return null;
     }
 
-    this.percolateDown();
+    this.heapify(0);
 
     return value;
   }
 
-  private percolateDown() {
-    throw new TODO("Implement percolateDown");
+  private heapify(i: number) {
+    const left = this.left(i);
+    const right = this.right(i);
+
+    let highestPriority = i;
+    if (
+      left < this.size &&
+      this.comparator(this.queue[left], this.queue[i]) < 0
+    ) {
+      highestPriority = left;
+    }
+
+    if (
+      right < this.size &&
+      this.comparator(this.queue[right], this.queue[highestPriority]) < 0
+    ) {
+      highestPriority = right;
+    }
+
+    if (highestPriority !== i) {
+      [this.queue[highestPriority], this.queue[i]] = [
+        this.queue[i],
+        this.queue[highestPriority],
+      ];
+      this.heapify(highestPriority);
+    }
   }
 
   get empty() {
