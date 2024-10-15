@@ -38,7 +38,7 @@ test("PriorityQueue<CustomData> - Heap Implementation", () => {
       return b.age - a.age;
     }
 
-    return a.lastName.localeCompare(b.lastName);
+    return a.lastName.toLowerCase().localeCompare(b.lastName.toLowerCase());
   });
 
   const dataPoints = [
