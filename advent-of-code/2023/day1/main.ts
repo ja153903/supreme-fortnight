@@ -1,9 +1,8 @@
+import { readInputToArray } from "@utils/advent-of-code";
 import { isDigit } from "@utils/alphabet";
 import { matchAllWithOverlap } from "@utils/regex";
 
-const file = Bun.file(`${import.meta.dir}/data.in`);
-const data = await file.text();
-const lines = data.split("\n").filter(Boolean);
+const lines = await readInputToArray(`${import.meta.dir}/data.in`);
 
 function part1() {
   let result = 0;
