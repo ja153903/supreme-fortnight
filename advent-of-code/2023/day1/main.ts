@@ -2,10 +2,9 @@ import { isDigit } from "@utils/alphabet";
 
 const FILE = Bun.file(`${import.meta.dir}/data.in`);
 const DATA = await FILE.text();
+const lines = DATA.split("\n").filter(Boolean);
 
 function part1() {
-  const lines = DATA.split("\n").filter(Boolean);
-
   let result = 0;
 
   for (const line of lines) {
@@ -40,7 +39,6 @@ const DIGIT_RECORD: Record<string, number> = {
 };
 
 function part2() {
-  const lines = DATA.split("\n").filter(Boolean);
   // NOTE: Need to use lookahead operator here because we want to capture
   // the overlap
   const regex = /(?=([1-9]|one|two|three|four|five|six|seven|eight|nine))/g;
