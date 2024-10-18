@@ -1,8 +1,9 @@
 import { isDigit } from "@utils/alphabet";
+import { matchAllWithOverlap } from "@utils/regex";
 
-const FILE = Bun.file(`${import.meta.dir}/data.in`);
-const DATA = await FILE.text();
-const lines = DATA.split("\n").filter(Boolean);
+const file = Bun.file(`${import.meta.dir}/data.in`);
+const data = await file.text();
+const lines = data.split("\n").filter(Boolean);
 
 function part1() {
   let result = 0;
@@ -46,7 +47,7 @@ function part2() {
   let result = 0;
 
   for (const line of lines) {
-    const matches = Array.from(line.matchAll(regex), (x) => x[1]);
+    const matches = matchAllWithOverlap(line, regex);
     let first = null;
     let last = null;
 
