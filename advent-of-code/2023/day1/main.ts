@@ -64,7 +64,7 @@ function part2() {
 
     let firstAsNum = null;
 
-    if (first && Object.hasOwn(DIGIT_RECORD, first)) {
+    if (first && first in DIGIT_RECORD) {
       firstAsNum = DIGIT_RECORD[first];
     } else if (first) {
       firstAsNum = parseInt(first, 10);
@@ -72,7 +72,7 @@ function part2() {
 
     let lastAsNum = null;
 
-    if (last && Object.hasOwn(DIGIT_RECORD, last)) {
+    if (last && last in DIGIT_RECORD) {
       lastAsNum = DIGIT_RECORD[last];
     } else if (last) {
       lastAsNum = parseInt(last, 10);
