@@ -85,7 +85,6 @@ function part2() {
     }
 
     const value = firstAsNum * 10 + lastAsNum;
-    console.log(`[${[...matches]}]: ${value}`);
     result += value;
   }
 
