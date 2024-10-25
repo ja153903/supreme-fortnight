@@ -39,8 +39,7 @@ const DIGIT_RECORD: Record<string, number> = {
 };
 
 function part2() {
-  // NOTE: Need to use lookahead operator here because we want to capture
-  // the overlap
+  // NOTE: Need to use lookahead operator here because we want to capture the overlap
   const regex = /(?=([1-9]|one|two|three|four|five|six|seven|eight|nine))/g;
 
   let result = 0;
