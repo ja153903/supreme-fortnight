@@ -7,7 +7,7 @@ class Trie {
     this.children = new Map();
   }
 
-  insert(word: string) {
+  insert(word: string | string[]) {
     let current: Trie = this;
 
     for (let i = 0; i < word.length; i++) {
@@ -22,7 +22,7 @@ class Trie {
     current.hasWord = true;
   }
 
-  has(word: string): boolean {
+  has(word: string | string[]): boolean {
     let current: this | undefined = this;
 
     for (const char of word) {
@@ -36,10 +36,48 @@ class Trie {
     return current?.hasWord ?? false;
   }
 
+  startsWith(word: string | string[]): boolean {
+    let current: this | undefined = this;
+
+    for (const char of word) {
+      if (current === undefined || !current.children.has(char)) {
+        return false;
+      }
+
+      current = current.children.get(char);
+    }
+
+    return true;
+  }
+
+  /**
+   * Not sure of a better name for this method just yet, but the
+   * idea is to check if a word has its constituent parts within the
+   * trie
+   */
+  hasAtoms(word: string | string[]): boolean {
+    let current: this | undefined = this;
+
+    for (const item of word) {
+      // This means that we don't have the constituent parts as of now
+      if (current === undefined || !current.children.has(item)) {
+        return false;
+      }
+
+      current = current.children.get(item);
+
+      if (current?.hasWord) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   /**
    * `lcp` returns the longest common prefix given some string
    */
-  lcp(prefix: string): number {
+  lcp(prefix: string | string[]): number {
     let current: this | undefined = this;
     let depth = 0;
 
@@ -56,7 +94,7 @@ class Trie {
     return depth;
   }
 
-  find(prefix: string): this | null {
+  find(prefix: string | string[]): this | null {
     let current: this = this;
 
     for (let i = 0; i < prefix.length; i++) {
