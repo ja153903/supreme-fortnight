@@ -1,3 +1,4 @@
+import { splitStringIntoIntegerArray } from "@lib/algorithms/array";
 import { readInputToArray } from "@utils/advent-of-code";
 
 const lines = await readInputToArray(`${import.meta.dir}/data.in`);
@@ -12,14 +13,8 @@ function parseCard(line: string): Card {
 
   return {
     index: parseInt(index, 10),
-    winningNumbers: winningNumbers
-      .split(/\s+/g)
-      .filter(Boolean)
-      .map((item) => parseInt(item, 10)),
-    ownedNumbers: ownedNumbers
-      .split(/\s+/g)
-      .filter(Boolean)
-      .map((item) => parseInt(item, 10)),
+    winningNumbers: splitStringIntoIntegerArray(winningNumbers),
+    ownedNumbers: splitStringIntoIntegerArray(ownedNumbers),
   };
 }
 
