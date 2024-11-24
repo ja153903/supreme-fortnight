@@ -3,11 +3,11 @@
  * and returns the sum of the results.
  */
 export function sum<T>(
-  items: Array<T>,
-  fn: (a: number, b: T) => number,
-  defaultValue: number = 0,
+	items: Array<T>,
+	fn: (a: number, b: T) => number,
+	defaultValue = 0,
 ): number {
-  return items.reduce((a, b) => fn(a, b), defaultValue);
+	return items.reduce((a, b) => fn(a, b), defaultValue);
 }
 
 /**
@@ -16,8 +16,17 @@ export function sum<T>(
  * make that easier for me
  */
 export function splitStringIntoIntegerArray(s: string): number[] {
-  return s
-    .split(/\s+/g)
-    .filter(Boolean)
-    .map((item) => parseInt(item, 10));
+	return s
+		.split(/\s+/g)
+		.filter(Boolean)
+		.map((item) => Number.parseInt(item, 10));
+}
+
+export function transposeMatrix<T>(matrix: T[][], defaultValue: T): T[][] {
+	const t = new Array();
+	for (let i = 0; i < matrix[0].length; i++) {
+		t.push(new Array(matrix.length).fill(defaultValue));
+	}
+
+	return t;
 }
