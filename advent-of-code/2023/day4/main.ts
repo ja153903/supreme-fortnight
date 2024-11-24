@@ -12,7 +12,7 @@ function parseCard(line: string): Card {
   const [winningNumbers, ownedNumbers] = numbersSeparatedByPipe.split(" | ");
 
   return {
-    index: parseInt(index, 10),
+    index: Number.parseInt(index, 10),
     winningNumbers: splitStringIntoIntegerArray(winningNumbers),
     ownedNumbers: splitStringIntoIntegerArray(ownedNumbers),
   };
@@ -33,7 +33,7 @@ function getMatchesPerCard(card: Card): number {
 
 function getPointsPerCard(card: Card): number {
   const intersection = getIntersection(card.ownedNumbers, card.winningNumbers);
-  return intersection.length > 0 ? Math.pow(2, intersection.length - 1) : 0;
+  return intersection.length > 0 ? 2 ** (intersection.length - 1) : 0;
 }
 
 function part1() {
@@ -48,7 +48,10 @@ function part2() {
     // increment the count
     counter.set(card.index, (counter.get(card.index) ?? 0) + 1);
 
-    const parentCount = counter.get(card.index)!;
+    const parentCount = counter.get(card.index);
+    if (!parentCount) {
+      throw new Error("There should've been a value here");
+    }
 
     // for each value, we also have to eventually update for every copy
     // with the count of the current card.index
