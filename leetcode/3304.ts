@@ -1,7 +1,7 @@
 import { CIRCULAR_ALPHABET } from "@utils/alphabet";
 
 function kthCharacter(k: number): string {
-  let word = ["a"];
+  const word = ["a"];
 
   while (word.length < k) {
     const size = word.length;

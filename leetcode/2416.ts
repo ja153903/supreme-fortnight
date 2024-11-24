@@ -16,7 +16,12 @@ class VisitedTrie extends Trie {
         current.children.set(word[i], new VisitedTrie());
       }
 
-      current = current.children.get(word[i])!;
+      const child = current.children.get(word[i]);
+      if (!child) {
+        throw new Error("This should exist");
+      }
+
+      current = child;
       current.visited++;
     }
 
@@ -31,7 +36,11 @@ class VisitedTrie extends Trie {
         return null;
       }
 
-      current = current.children.get(prefix[i])!;
+      const child = current.children.get(prefix[i]);
+      if (!child) {
+        throw new Error("This cannot be possible");
+      }
+      current = child;
     }
 
     return current;

@@ -20,7 +20,7 @@ function part1() {
       }
     }
 
-    result += parseInt(`${first}${last}`, 10);
+    result += Number.parseInt(`${first}${last}`, 10);
   }
 
   return result;
@@ -66,7 +66,7 @@ function part2() {
     if (first && first in DIGIT_RECORD) {
       firstAsNum = DIGIT_RECORD[first];
     } else if (first) {
-      firstAsNum = parseInt(first, 10);
+      firstAsNum = Number.parseInt(first, 10);
     }
 
     let lastAsNum = null;
@@ -74,7 +74,7 @@ function part2() {
     if (last && last in DIGIT_RECORD) {
       lastAsNum = DIGIT_RECORD[last];
     } else if (last) {
-      lastAsNum = parseInt(last, 10);
+      lastAsNum = Number.parseInt(last, 10);
     }
 
     if (!firstAsNum || !lastAsNum) {

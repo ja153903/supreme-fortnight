@@ -34,7 +34,8 @@ class Counter<T> extends Map<T, number> {
    */
   increment(key: T) {
     this.setIfEmpty(key);
-    this.set(key, this.get(key)! + 1);
+    const current = this.get(key) ?? 0;
+    this.set(key, current + 1);
   }
 
   /**
@@ -44,7 +45,8 @@ class Counter<T> extends Map<T, number> {
    */
   decrement(key: T) {
     this.setIfEmpty(key);
-    this.set(key, this.get(key)! - 1);
+    const current = this.get(key) ?? 0;
+    this.set(key, current - 1);
   }
 
   private setIfEmpty(key: T) {

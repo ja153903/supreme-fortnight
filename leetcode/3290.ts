@@ -9,18 +9,18 @@ function maxScore(a: number[], b: number[]): number {
     }
 
     if (j >= b.length) {
-      return -Infinity;
+      return Number.NEGATIVE_INFINITY;
     }
 
     if (memo[i][j] !== -1) {
-      return memo[i][j]!;
+      return memo[i][j];
     }
 
     memo[i][j] = Math.max(
       // Don't take the current index
       rec(a, b, i, j + 1),
       // Take the current index
-      a[i] * b[j] + rec(a, b, i + 1, j + 1)
+      a[i] * b[j] + rec(a, b, i + 1, j + 1),
     );
 
     return memo[i][j];

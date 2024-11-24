@@ -80,5 +80,5 @@ export function getConsonantCount(word: string): number {
 }
 
 export function isDigit(ch: string): boolean {
-  return !isNaN(parseInt(ch, 10));
+  return !Number.isNaN(Number.parseInt(ch, 10));
 }

@@ -9,7 +9,7 @@ export class Solution {
         return false;
       }
 
-      const value = sCounter.get(ch)!;
+      const value = sCounter.get(ch) ?? 0;
       if (value <= 0) {
         return false;
       }

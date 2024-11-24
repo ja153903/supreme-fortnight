@@ -2,7 +2,8 @@ import { sum } from "@lib/algorithms/array";
 import { TODO } from "@utils/todo";
 
 function minSubarray(nums: number[], p: number): number {
-  let res = Infinity;
+  // TODO: This needs to be implemented
+  const res = Number.POSITIVE_INFINITY;
 
   const currentSum = sum<number>(nums, (a, b) => a + b);
   if (currentSum % p === 0) {
@@ -14,7 +15,7 @@ function minSubarray(nums: number[], p: number): number {
   // We first get that 10 % 6 = 4, if 4 exists in nums, then we can remove it
   throw new TODO("Finish the implementation here");
 
-  return res === Infinity ? -1 : res;
+  // return res === Infinity ? -1 : res;
 }
 
 export { minSubarray };

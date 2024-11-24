@@ -13,7 +13,11 @@ function arrayRankTransform(arr: number[]): number[] {
   }
 
   for (let i = 0; i < arr.length; i++) {
-    result[i] = hash.get(arr[i])!;
+    const value = hash.get(arr[i]);
+    if (value === undefined) {
+      throw new Error("This is not possible");
+    }
+    result[i] = value;
   }
 
   return result;

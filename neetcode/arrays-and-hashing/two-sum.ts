@@ -4,7 +4,11 @@ export class Solution {
 
     for (let i = 0; i < nums.length; i++) {
       if (seen.has(target - nums[i])) {
-        return [seen.get(target - nums[i])!, i];
+        const value = seen.get(target - nums[i]);
+        if (value === undefined) {
+          throw new Error("This shouldn't be possible");
+        }
+        return [value, i];
       }
 
       seen.set(nums[i], i);

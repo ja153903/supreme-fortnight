@@ -4,7 +4,7 @@ import { isDigit } from "@utils/alphabet";
 
 const lines = await readInputToArray(`${import.meta.dir}/data.in`);
 
-function isSymbol(char: string, isGearDefined: boolean = false) {
+function isSymbol(char: string, isGearDefined = false) {
   if (isGearDefined) {
     return char === "*";
   }
@@ -12,7 +12,7 @@ function isSymbol(char: string, isGearDefined: boolean = false) {
   return !isDigit(char) && char !== ".";
 }
 
-function enqueueSymbols(data: string[], isGearDefined: boolean = false) {
+function enqueueSymbols(data: string[], isGearDefined = false) {
   const queue: [number, number][] = [];
 
   for (let i = 0; i < data.length; i++) {
@@ -73,7 +73,12 @@ function buildDigit(
   let res = 0;
 
   while (dq.length > 0) {
-    res = res * 10 + parseInt(dq.shift()!, 10);
+    const front = dq.shift();
+    if (front === undefined) {
+      throw new Error("Empty item for some reason");
+    }
+
+    res = res * 10 + Number.parseInt(front, 10);
   }
 
   return res;
@@ -112,7 +117,12 @@ function part1() {
   let result = 0;
 
   while (symbols.length > 0) {
-    result += sum(findDigits(lines, symbols.shift()!), (a, b) => a + b);
+    const front = symbols.shift();
+    if (front === undefined) {
+      throw new Error("Front is empty for some reason");
+    }
+
+    result += sum(findDigits(lines, front), (a, b) => a + b);
   }
 
   return result;
@@ -124,7 +134,12 @@ function part2() {
   let result = 0;
 
   while (symbols.length > 0) {
-    const digits = findDigits(lines, symbols.shift()!);
+    const front = symbols.shift();
+    if (front === undefined) {
+      throw new Error("Front is undefined for some reason");
+    }
+
+    const digits = findDigits(lines, front);
     if (digits.length === 2) {
       result += digits[0] * digits[1];
     }

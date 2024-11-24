@@ -16,7 +16,11 @@ class Trie {
         current.children.set(char, new Trie());
       }
 
-      current = current.children.get(char)!;
+      const child = current.children.get(char);
+      if (!child) {
+        throw new Error("This cannot be possible");
+      }
+      current = child;
     }
 
     current.hasWord = true;
@@ -102,7 +106,12 @@ class Trie {
         return null;
       }
 
-      current = current.children.get(prefix[i])!;
+      const child = current.children.get(prefix[i]);
+      if (!child) {
+        throw new Error("This cannot be possible");
+      }
+
+      current = child;
     }
 
     return current;

@@ -14,13 +14,13 @@ function buildGame(line: string): Game {
     return Object.fromEntries(
       round.split(", ").map((color) => {
         const [value, key] = color.split(" ");
-        return [key, parseInt(value, 10)] as [Color, number];
-      })
+        return [key, Number.parseInt(value, 10)] as [Color, number];
+      }),
     ) as Color;
   });
 
   return {
-    index: parseInt(gameIndexAsStr, 10),
+    index: Number.parseInt(gameIndexAsStr, 10),
     colors: colorsBySemicolon,
   };
 }

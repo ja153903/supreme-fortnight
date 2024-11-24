@@ -5,7 +5,7 @@ function checkInclusion(s1: string, s2: string): boolean {
     return false;
   }
 
-  let counter = new Counter<string>(s1);
+  const counter = new Counter<string>(s1);
 
   let target = s1.length;
   let start = 0;
