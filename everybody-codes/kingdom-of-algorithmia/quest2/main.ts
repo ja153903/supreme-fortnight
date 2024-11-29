@@ -43,6 +43,21 @@ function mergeIntervals(intervals: [number, number][]): [number, number][] {
 	return mergedIntervals;
 }
 
+function getMatches(line: string, rune: string): [number, number][] {
+	const intervals: [number, number][] = [];
+
+	const regex = new RegExp(`(?=(${rune}))`, "g");
+	const matches = line.matchAll(regex);
+	for (const match of matches) {
+		const r = match[1];
+		const s = match.index;
+
+		intervals.push([s, s + r.length]);
+	}
+
+	return intervals;
+}
+
 async function part2() {
 	const lines = await readInputToArray(`${import.meta.dir}/part2.in`);
 	const [words, ...paragraph] = lines;
@@ -56,26 +71,8 @@ async function part2() {
 		const intervals: [number, number][] = [];
 
 		for (const rune of runes) {
-			const fwdRegex = new RegExp(`(?=(${rune}))`, "g");
-			const fwdMatches = line.matchAll(fwdRegex);
-			for (const match of fwdMatches) {
-				const r = match[1];
-				const s = match.index;
-
-				intervals.push([s, s + r.length]);
-			}
-
-			const bckRegex = new RegExp(
-				`(?=(${rune.split("").reverse().join("")}))`,
-				"g",
-			);
-			const bckMatches = line.matchAll(bckRegex);
-			for (const match of bckMatches) {
-				const r = match[1];
-				const s = match.index;
-
-				intervals.push([s, s + r.length]);
-			}
+			intervals.push(...getMatches(line, rune));
+			intervals.push(...getMatches(line, rune.split("").reverse().join("")));
 		}
 
 		const mergedIntervals = mergeIntervals(intervals);
@@ -89,3 +86,17 @@ async function part2() {
 }
 
 console.log(`Part 2: ${await part2()}`);
+
+async function part3() {
+	const lines = await readInputToArray(`${import.meta.dir}/part3.in`);
+	const [words, ...grid] = lines;
+
+	const [_, rawRunes] = words.split(":");
+	const runes = rawRunes.split(",");
+
+	let result = 0;
+
+	return result;
+}
+
+console.log(`Part 3: ${await part3()}`);
