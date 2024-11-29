@@ -17,18 +17,6 @@ async function part1() {
 
 console.log(`Part 1: ${await part1()}`);
 
-function buildRunesRegex(runes: string): RegExp {
-	const [_, rawRunes] = runes.split(":");
-	const asArray = rawRunes.split(",");
-	const all = [
-		...asArray,
-		...asArray.map((r) => r.split("").reverse().join("")),
-	];
-
-	// What happens if we have two regexes instead?
-	return new RegExp(`(?=(${all.join("|")}))`, "g");
-}
-
 function mergeIntervals(intervals: [number, number][]): [number, number][] {
 	intervals.sort((a, b) => (a[0] === b[0] ? a[1] - b[1] : a[0] - b[0]));
 
@@ -42,7 +30,7 @@ function mergeIntervals(intervals: [number, number][]): [number, number][] {
 
 		const last = mergedIntervals[mergedIntervals.length - 1];
 
-		if (last[1] > interval[0]) {
+		if (last[1] >= interval[0]) {
 			mergedIntervals[mergedIntervals.length - 1] = [
 				Math.min(last[0], interval[0]),
 				Math.max(last[1], interval[1]),
@@ -59,24 +47,41 @@ async function part2() {
 	const lines = await readInputToArray(`${import.meta.dir}/part2.in`);
 	const [words, ...paragraph] = lines;
 
-	const regex = buildRunesRegex(words.trimEnd());
-
 	let result = 0;
 
+	const [_, rawRunes] = words.split(":");
+	const runes = rawRunes.split(",");
+
 	for (const line of paragraph) {
-		const matches = line.trim().matchAll(regex);
 		const intervals: [number, number][] = [];
 
-		for (const match of matches) {
-			const rune = match[1];
-			const start = match.index;
-			intervals.push([start, start + rune.length - 1]);
+		for (const rune of runes) {
+			const fwdRegex = new RegExp(`(?=(${rune}))`, "g");
+			const fwdMatches = line.matchAll(fwdRegex);
+			for (const match of fwdMatches) {
+				const r = match[1];
+				const s = match.index;
+
+				intervals.push([s, s + r.length]);
+			}
+
+			const bckRegex = new RegExp(
+				`(?=(${rune.split("").reverse().join("")}))`,
+				"g",
+			);
+			const bckMatches = line.matchAll(bckRegex);
+			for (const match of bckMatches) {
+				const r = match[1];
+				const s = match.index;
+
+				intervals.push([s, s + r.length]);
+			}
 		}
 
 		const mergedIntervals = mergeIntervals(intervals);
 
-		for (const interval of mergedIntervals) {
-			result += interval[1] - interval[0] + 1;
+		for (const [start, end] of mergedIntervals) {
+			result += end - start;
 		}
 	}
 
