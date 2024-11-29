@@ -20,13 +20,12 @@ console.log(`Part 1: ${await part1()}`);
 function buildRunesRegex(runes: string): RegExp {
 	const [_, rawRunes] = runes.split(":");
 	const asArray = rawRunes.split(",");
-	const all = Array.from(
-		new Set([
-			...asArray,
-			...asArray.map((r) => r.split("").reverse().join("")),
-		]),
-	);
+	const all = [
+		...asArray,
+		...asArray.map((r) => r.split("").reverse().join("")),
+	];
 
+	// What happens if we have two regexes instead?
 	return new RegExp(`(?=(${all.join("|")}))`, "g");
 }
 
@@ -71,12 +70,10 @@ async function part2() {
 		for (const match of matches) {
 			const rune = match[1];
 			const start = match.index;
-
 			intervals.push([start, start + rune.length - 1]);
 		}
 
 		const mergedIntervals = mergeIntervals(intervals);
-		console.log(mergedIntervals, line);
 
 		for (const interval of mergedIntervals) {
 			result += interval[1] - interval[0] + 1;
