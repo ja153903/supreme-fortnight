@@ -140,8 +140,8 @@ function part2() {
 				continue;
 			}
 
-			const uCopy = new Set(u.path);
-			uCopy.add(`${nx},${ny}`);
+			const uPathCopy = new Set(u.path);
+			uPathCopy.add(`${nx},${ny}`);
 
 			if (u.direction !== dd) {
 				queue.enqueue({
@@ -149,7 +149,7 @@ function part2() {
 					x: nx,
 					y: ny,
 					direction: dd,
-					path: uCopy,
+					path: uPathCopy,
 				});
 			} else {
 				queue.enqueue({
@@ -157,7 +157,7 @@ function part2() {
 					x: nx,
 					y: ny,
 					direction: dd,
-					path: uCopy,
+					path: uPathCopy,
 				});
 			}
 		}
