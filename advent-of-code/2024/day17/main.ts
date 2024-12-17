@@ -143,7 +143,7 @@ function part1() {
 }
 
 function part2() {
-	// TODO: There's a trick here that I can't figure out
+	// TODO: I don't have the intuition for part 2. GGs AoC 2024
 }
 
 console.log(`Part 1: ${part1()}`);
