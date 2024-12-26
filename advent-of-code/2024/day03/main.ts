@@ -18,6 +18,7 @@ function part1() {
 const matches2 = data.matchAll(
 	/mul\((?<l>\d+),(?<r>\d+)\)|(?<do>do)\(\)|(?<dont>don't)\(\)/g,
 );
+
 function part2() {
 	let res = 0;
 	let shouldCalc = true;
