@@ -257,25 +257,11 @@ function evaluateInstructionWithExpandedGrid(
 	return null;
 }
 
-function prettyPrint(grid: string[][]) {
-	for (const row of grid) {
-		console.log(row.join(" "));
-	}
-}
-
 function part2() {
-	// console.log("Original: ");
-	// prettyPrint(grid2);
-
 	for (const instruction of instructions) {
 		const [r, c] = findStartingPosition(grid2);
 		evaluateInstructionWithExpandedGrid(grid2, r, c, instruction);
-
-		// console.log(`Move ${instruction}`);
-		// prettyPrint(grid2);
 	}
-
-	// prettyPrint(grid2);
 
 	let res = 0;
 
