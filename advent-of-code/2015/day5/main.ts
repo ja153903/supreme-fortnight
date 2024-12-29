@@ -60,7 +60,37 @@ function part1() {
 	return lines.filter((line) => isNice(line)).length;
 }
 
-function part2() {}
+function hasStringPairWithoutOverlap(word: string) {
+	for (let i = 1; i < word.length; i++) {
+		for (let j = i + 1; j < word.length - 1; j++) {
+			if (word[i - 1] === word[j] && word[i] === word[j + 1]) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+function hasRepeatingLetterBetweenOne(word: string) {
+	for (let i = 1; i < word.length - 1; i++) {
+		if (word[i - 1] === word[i + 1]) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+function isNicePt2(word: string): boolean {
+	return (
+		hasStringPairWithoutOverlap(word) && hasRepeatingLetterBetweenOne(word)
+	);
+}
+
+function part2() {
+	return lines.filter((line) => isNicePt2(line)).length;
+}
 
 console.log(`Part 1: ${part1()}`);
 console.log(`Part 2: ${part2()}`);
