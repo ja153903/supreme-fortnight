@@ -65,7 +65,6 @@ function part1() {
 
 		const { operation, lhs, rhs, register } = front;
 
-		// TODO: Finish solving this problem
 		switch (operation) {
 			case "ASSIGN": {
 				// check if the lhs is a number
