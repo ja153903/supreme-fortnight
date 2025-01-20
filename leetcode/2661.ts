@@ -21,6 +21,7 @@ function firstCompleteIndex(arr: number[], mat: number[][]): number {
 	}
 
 	for (let i = 0; i < arr.length; i++) {
+		// biome-ignore lint/style/noNonNullAssertion: <It should exist dummy>
 		const { row, col } = positions.get(arr[i])!;
 
 		const downTheCol = `r${row}`;
