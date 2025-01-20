@@ -1,4 +1,4 @@
-import { test, expect } from "bun:test";
+import { expect, test } from "bun:test";
 import { firstCompleteIndex } from "./2661";
 
 test("First Completely Painted Row or Column", () => {

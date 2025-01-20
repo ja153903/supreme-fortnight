@@ -94,7 +94,7 @@ async function part3() {
 	const [_, rawRunes] = words.split(":");
 	const runes = rawRunes.split(",");
 
-	let result = 0;
+	const result = 0;
 
 	return result;
 }

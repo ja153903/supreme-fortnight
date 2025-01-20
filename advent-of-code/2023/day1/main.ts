@@ -5,87 +5,87 @@ import { matchAllWithOverlap } from "@utils/regex";
 const lines = await readInputToArray(`${import.meta.dir}/data.in`);
 
 function part1() {
-  let result = 0;
+	let result = 0;
 
-  for (const line of lines) {
-    let first = null;
-    let last = null;
+	for (const line of lines) {
+		let first = null;
+		let last = null;
 
-    for (let i = 0; i < line.length; i++) {
-      if (isDigit(line[i])) {
-        if (first === null) {
-          first = line[i];
-        }
-        last = line[i];
-      }
-    }
+		for (let i = 0; i < line.length; i++) {
+			if (isDigit(line[i])) {
+				if (first === null) {
+					first = line[i];
+				}
+				last = line[i];
+			}
+		}
 
-    result += Number.parseInt(`${first}${last}`, 10);
-  }
+		result += Number.parseInt(`${first}${last}`, 10);
+	}
 
-  return result;
+	return result;
 }
 
 const DIGIT_RECORD: Record<string, number> = {
-  one: 1,
-  two: 2,
-  three: 3,
-  four: 4,
-  five: 5,
-  six: 6,
-  seven: 7,
-  eight: 8,
-  nine: 9,
+	one: 1,
+	two: 2,
+	three: 3,
+	four: 4,
+	five: 5,
+	six: 6,
+	seven: 7,
+	eight: 8,
+	nine: 9,
 };
 
 function part2() {
-  // NOTE: Need to use lookahead operator here because we want to capture the overlap
-  const regex = /(?=([1-9]|one|two|three|four|five|six|seven|eight|nine))/g;
+	// NOTE: Need to use lookahead operator here because we want to capture the overlap
+	const regex = /(?=([1-9]|one|two|three|four|five|six|seven|eight|nine))/g;
 
-  let result = 0;
+	let result = 0;
 
-  for (const line of lines) {
-    const matches = matchAllWithOverlap(line, regex);
-    let first = null;
-    let last = null;
+	for (const line of lines) {
+		const matches = matchAllWithOverlap(line, regex);
+		let first = null;
+		let last = null;
 
-    if (matches === null) {
-      throw new Error("Could not find a match");
-    }
+		if (matches === null) {
+			throw new Error("Could not find a match");
+		}
 
-    for (const match of matches) {
-      if (first === null) {
-        first = match;
-      }
+		for (const match of matches) {
+			if (first === null) {
+				first = match;
+			}
 
-      last = match;
-    }
+			last = match;
+		}
 
-    let firstAsNum = null;
+		let firstAsNum = null;
 
-    if (first && first in DIGIT_RECORD) {
-      firstAsNum = DIGIT_RECORD[first];
-    } else if (first) {
-      firstAsNum = Number.parseInt(first, 10);
-    }
+		if (first && first in DIGIT_RECORD) {
+			firstAsNum = DIGIT_RECORD[first];
+		} else if (first) {
+			firstAsNum = Number.parseInt(first, 10);
+		}
 
-    let lastAsNum = null;
+		let lastAsNum = null;
 
-    if (last && last in DIGIT_RECORD) {
-      lastAsNum = DIGIT_RECORD[last];
-    } else if (last) {
-      lastAsNum = Number.parseInt(last, 10);
-    }
+		if (last && last in DIGIT_RECORD) {
+			lastAsNum = DIGIT_RECORD[last];
+		} else if (last) {
+			lastAsNum = Number.parseInt(last, 10);
+		}
 
-    if (!firstAsNum || !lastAsNum) {
-      throw new Error("Could not parse string to number somehow");
-    }
+		if (!firstAsNum || !lastAsNum) {
+			throw new Error("Could not parse string to number somehow");
+		}
 
-    const value = firstAsNum * 10 + lastAsNum;
-    result += value;
-  }
+		const value = firstAsNum * 10 + lastAsNum;
+		result += value;
+	}
 
-  return result;
+	return result;
 }
 
 console.log("Part 1: ", part1());

@@ -1,19 +1,19 @@
 {
-  "name": "problem-solving",
-  "module": "index.ts",
-  "type": "module",
-  "scripts": {
-    "test:leetcode": "bun test --test-name-pattern leetcode"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "@datastructures-js/priority-queue": "^6.3.1",
-    "utility-types": "^3.11.0"
-  }
+	"name": "problem-solving",
+	"module": "index.ts",
+	"type": "module",
+	"scripts": {
+		"test:leetcode": "bun test --test-name-pattern leetcode"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"@datastructures-js/priority-queue": "^6.3.1",
+		"utility-types": "^3.11.0"
+	}
 }

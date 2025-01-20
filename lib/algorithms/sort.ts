@@ -3,8 +3,8 @@
  * sorting each character and then joining everything back
  */
 export function ssort(s: string): string {
-  return s
-    .split("")
-    .sort((a, b) => a.localeCompare(b))
-    .join("");
+	return s
+		.split("")
+		.sort((a, b) => a.localeCompare(b))
+		.join("");
 }

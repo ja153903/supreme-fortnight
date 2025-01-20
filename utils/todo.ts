@@ -3,8 +3,8 @@
  * the implementation is not worried yet
  */
 export class TODO extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "TODO";
-  }
+	constructor(message: string) {
+		super(message);
+		this.name = "TODO";
+	}
 }
