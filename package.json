@@ -3,11 +3,13 @@
 	"module": "index.ts",
 	"type": "module",
 	"scripts": {
-		"test:leetcode": "bun test --test-name-pattern leetcode"
+		"test:leetcode": "bun test --test-name-pattern leetcode",
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@types/bun": "latest"
+		"@types/bun": "latest",
+		"husky": "^9.1.7"
 	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"
