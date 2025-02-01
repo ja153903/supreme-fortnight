@@ -1,5 +1,5 @@
-import { expect, test } from "bun:test";
-import { gridGame } from "./2017";
+import { expect, test } from "bun:test"
+import { gridGame } from "./2017"
 
 test("2017. Grid Game", () => {
 	expect(
@@ -7,5 +7,5 @@ test("2017. Grid Game", () => {
 			[2, 5, 4],
 			[1, 5, 1],
 		]),
-	).toBe(4);
-});
+	).toBe(4)
+})

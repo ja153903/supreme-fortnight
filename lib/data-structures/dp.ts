@@ -3,14 +3,14 @@ export function createMemoTable<T>(
 	cols: number,
 	defaultValue: T,
 ): T[][] {
-	const matrix: T[][] = [];
+	const matrix: T[][] = []
 
 	for (let i = 0; i < rows; i++) {
-		matrix.push([]);
+		matrix.push([])
 		for (let j = 0; j < cols; j++) {
-			matrix[i].push(defaultValue);
+			matrix[i].push(defaultValue)
 		}
 	}
 
-	return matrix;
+	return matrix
 }

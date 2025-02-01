@@ -1,9 +1,9 @@
-import { expect, test } from "bun:test";
-import { Solution } from "./is-anagram";
+import { expect, test } from "bun:test"
+import { Solution } from "./is-anagram"
 
-const solution = new Solution();
+const solution = new Solution()
 
 test("Is Anagram", () => {
-	expect(solution.isAnagram("racecar", "carrace")).toBeTrue();
-	expect(solution.isAnagram("jar", "jam")).toBeFalse();
-});
+	expect(solution.isAnagram("racecar", "carrace")).toBeTrue()
+	expect(solution.isAnagram("jar", "jam")).toBeFalse()
+})

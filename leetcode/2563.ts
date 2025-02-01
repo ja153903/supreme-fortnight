@@ -6,19 +6,19 @@ function countFairPairs(nums: number[], lower: number, upper: number): number {
 	// This solution will timeout depending on how large nums can get
 
 	// we should at least get this down to O(sort)
-	let result = 0;
+	let result = 0
 
 	for (let i = 0; i < nums.length; i++) {
 		for (let j = i + 1; j < nums.length; j++) {
-			const current = nums[i] + nums[j];
+			const current = nums[i] + nums[j]
 
 			if (lower <= current && current <= upper) {
-				result++;
+				result++
 			}
 		}
 	}
 
-	return result;
+	return result
 }
 
-export { countFairPairs };
+export { countFairPairs }

@@ -4,10 +4,10 @@
  */
 class Counter<T> extends Map<T, number> {
 	constructor(iterable?: Iterable<T>) {
-		super();
+		super()
 
 		if (iterable) {
-			this.update(iterable);
+			this.update(iterable)
 		}
 	}
 
@@ -18,12 +18,12 @@ class Counter<T> extends Map<T, number> {
 	 * @returns Always returns a number; if the key does not exist, then you'll get 0
 	 */
 	override get(key: T): number {
-		return super.get(key) ?? 0;
+		return super.get(key) ?? 0
 	}
 
 	update(iterable: Iterable<T>) {
 		for (const item of iterable) {
-			this.increment(item);
+			this.increment(item)
 		}
 	}
 
@@ -33,9 +33,9 @@ class Counter<T> extends Map<T, number> {
 	 * for that key and then increment the value to 1
 	 */
 	increment(key: T) {
-		this.setIfEmpty(key);
-		const current = this.get(key) ?? 0;
-		this.set(key, current + 1);
+		this.setIfEmpty(key)
+		const current = this.get(key) ?? 0
+		this.set(key, current + 1)
 	}
 
 	/**
@@ -44,16 +44,16 @@ class Counter<T> extends Map<T, number> {
 	 * and decrement to -1.
 	 */
 	decrement(key: T) {
-		this.setIfEmpty(key);
-		const current = this.get(key) ?? 0;
-		this.set(key, current - 1);
+		this.setIfEmpty(key)
+		const current = this.get(key) ?? 0
+		this.set(key, current - 1)
 	}
 
 	private setIfEmpty(key: T) {
 		if (!this.has(key)) {
-			this.set(key, 0);
+			this.set(key, 0)
 		}
 	}
 }
 
-export { Counter };
+export { Counter }

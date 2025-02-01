@@ -7,7 +7,7 @@ export function sum<T>(
 	fn: (a: number, b: T) => number,
 	defaultValue = 0,
 ): number {
-	return items.reduce((a, b) => fn(a, b), defaultValue);
+	return items.reduce((a, b) => fn(a, b), defaultValue)
 }
 
 /**
@@ -19,14 +19,14 @@ export function splitStringIntoIntegerArray(s: string): number[] {
 	return s
 		.split(/\s+/g)
 		.filter(Boolean)
-		.map((item) => Number.parseInt(item, 10));
+		.map((item) => Number.parseInt(item, 10))
 }
 
 export function transposeMatrix<T>(matrix: T[][], defaultValue: T): T[][] {
-	const t = new Array();
+	const t = new Array()
 	for (let i = 0; i < matrix[0].length; i++) {
-		t.push(new Array(matrix.length).fill(defaultValue));
+		t.push(new Array(matrix.length).fill(defaultValue))
 	}
 
-	return t;
+	return t
 }

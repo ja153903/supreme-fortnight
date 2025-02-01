@@ -1,5 +1,5 @@
-import { expect, test } from "bun:test";
-import { maxMatrixSum } from "./1975";
+import { expect, test } from "bun:test"
+import { maxMatrixSum } from "./1975"
 
 test("1975. Maximum Matrix Sum", () => {
 	expect(
@@ -7,12 +7,12 @@ test("1975. Maximum Matrix Sum", () => {
 			[1, -1],
 			[-1, 1],
 		]),
-	).toBe(4);
+	).toBe(4)
 	expect(
 		maxMatrixSum([
 			[1, 2, 3],
 			[-1, -2, -3],
 			[1, 2, 3],
 		]),
-	).toBe(16);
-});
+	).toBe(16)
+})

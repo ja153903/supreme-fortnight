@@ -1,5 +1,5 @@
 function prefixCount(words: string[], pref: string): number {
-	return words.filter((word) => word.startsWith(pref)).length;
+	return words.filter((word) => word.startsWith(pref)).length
 }
 
-export { prefixCount };
+export { prefixCount }

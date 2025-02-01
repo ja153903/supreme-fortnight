@@ -1,40 +1,40 @@
-import { readInputToString } from "@utils/advent-of-code";
+import { readInputToString } from "@utils/advent-of-code"
 
-const data = await readInputToString(`${import.meta.dir}/data.in`);
+const data = await readInputToString(`${import.meta.dir}/data.in`)
 
 function part1() {
-	let res = 0;
+	let res = 0
 
 	for (let i = 0; i < data.length; i++) {
 		if (data[i] === "(") {
-			res++;
+			res++
 		}
 		if (data[i] === ")") {
-			res--;
+			res--
 		}
 	}
 
-	return res;
+	return res
 }
 
 function part2() {
-	let level = 0;
+	let level = 0
 
 	for (let i = 0; i < data.length; i++) {
 		if (data[i] === "(") {
-			level++;
+			level++
 		}
 		if (data[i] === ")") {
-			level--;
+			level--
 		}
 
 		if (level < 0) {
-			return i + 1;
+			return i + 1
 		}
 	}
 
-	throw new Error("Santa never enters the basement");
+	throw new Error("Santa never enters the basement")
 }
 
-console.log(`Part 1: ${part1()}`);
-console.log(`Part 2: ${part2()}`);
+console.log(`Part 1: ${part1()}`)
+console.log(`Part 2: ${part2()}`)

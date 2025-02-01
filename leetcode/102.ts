@@ -1,39 +1,39 @@
-import type { TreeNode } from "@lib/data-structures/leetcode";
+import type { TreeNode } from "@lib/data-structures/leetcode"
 
 function levelOrder(root: TreeNode | null): number[][] {
 	if (!root) {
-		return [];
+		return []
 	}
 
-	const result: number[][] = [];
-	const queue = [];
-	queue.push(root);
+	const result: number[][] = []
+	const queue = []
+	queue.push(root)
 
 	while (queue.length > 0) {
-		const size = queue.length;
-		const level: number[] = [];
+		const size = queue.length
+		const level: number[] = []
 
 		for (let i = 0; i < size; i++) {
-			const front = queue.shift();
+			const front = queue.shift()
 			if (!front) {
-				throw new Error("front is null?");
+				throw new Error("front is null?")
 			}
 
-			level.push(front.val);
+			level.push(front.val)
 
 			if (front.left) {
-				queue.push(front.left);
+				queue.push(front.left)
 			}
 
 			if (front.right) {
-				queue.push(front.right);
+				queue.push(front.right)
 			}
 		}
 
-		result.push(level);
+		result.push(level)
 	}
 
-	return result;
+	return result
 }
 
-export { levelOrder };
+export { levelOrder }
